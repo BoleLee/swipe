@@ -13,6 +13,9 @@
 
 - continuous为false时，切换到最后一个item后不会自动回到第一个
 
+## 查看效果
+浏览器打开```example/index.html```
+
 ## 使用1: 
 将```components```置于项目中，可根据需要改写
 

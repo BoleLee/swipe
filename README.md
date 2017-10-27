@@ -9,11 +9,13 @@
 
 - 新增支持垂直方向
 
+- 新增淡入淡出效果 （2017-10-27）
+
 - 垂直方向暂不支持拖动切换
 
 - continuous为false时，切换到最后一个item后不会自动回到第一个
 
-## 查看效果
+## 效果与示例
 浏览器打开```example/index.html```
 
 ## 使用1: 
@@ -32,4 +34,7 @@
 ```
 ./node_modules/.bin/webpack --config webpack.example.config.js
 ```
+
+若需自动编译，加上 ``` --watch ``` 
+输出文件位于``` dist/ ```
 

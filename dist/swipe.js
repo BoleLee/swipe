@@ -325,6 +325,11 @@ if (false) {(function () {
       default: false
     },
 
+    fade: {
+      type: Boolean,
+      default: false
+    },
+
     noDragWhenSingle: {
       type: Boolean,
       default: true
@@ -366,8 +371,9 @@ if (false) {(function () {
       }, 100);
     },
 
-    translate(element, offset, speed, callback) {
+    translate(element, offset, speed, state, callback) {
       var direction = this.direction;
+      var fade = this.fade;
 
       if (speed) {
         this.animating = true;
@@ -377,6 +383,10 @@ if (false) {(function () {
             element.style.webkitTransform = `translate3d(${offset}px, 0, 0)`;
           } else if (direction === 'vertical') {
             element.style.webkitTransform = `translate3d(0, ${offset}px, 0)`;
+          }
+          if (fade) {
+            var animationName = state === 'current' ? 'swipeItemFadeOut' : 'swipeItemFadeIn';
+            element.style.animation = animationName + ' ' + speed + 'ms';
           }
         }, 50);
 
@@ -524,57 +534,57 @@ if (false) {(function () {
           this.isDone = true;
           this.before(currentPage);
           if (direction === 'horizontal') {
-            this.translate(currentPage, -pageWidth, speed, callback);
+            this.translate(currentPage, -pageWidth, speed, 'current', callback);
           } else if (direction === 'vertical') {
-            this.translate(currentPage, -pageHeight, speed, callback);
+            this.translate(currentPage, -pageHeight, speed, 'current', callback);
           }
           if (nextPage) {
-            this.translate(nextPage, 0, speed);
+            this.translate(nextPage, 0, speed, 'next');
           }
         } else if (towards === 'prev') {
           this.isDone = true;
           this.before(currentPage);
           if (direction === 'horizontal') {
-            this.translate(currentPage, pageWidth, speed, callback);
+            this.translate(currentPage, pageWidth, speed, 'current', callback);
           } else if (direction === 'vertical') {
-            this.translate(currentPage, pageHeight, speed, callback);
+            this.translate(currentPage, pageHeight, speed, 'current', callback);
           }
           if (prevPage) {
-            this.translate(prevPage, 0, speed);
+            this.translate(prevPage, 0, speed, 'prev');
           }
         } else {
           this.isDone = false;
-          this.translate(currentPage, 0, speed, callback);
+          this.translate(currentPage, 0, speed, 'current', callback);
 
           if (direction === 'horizontal' && typeof offsetLeft !== 'undefined') {
             if (prevPage && offsetLeft > 0) {
-              this.translate(prevPage, pageWidth * -1, speed);
+              this.translate(prevPage, pageWidth * -1, speed, 'prev');
             }
             if (nextPage && offsetLeft < 0) {
-              this.translate(nextPage, pageWidth, speed);
+              this.translate(nextPage, pageWidth, speed, 'next');
             }
           } else if (direction === 'horizontal') {
             if (prevPage) {
-              this.translate(prevPage, pageWidth * -1, speed);
+              this.translate(prevPage, pageWidth * -1, speed, 'prev');
             }
             if (nextPage) {
-              this.translate(nextPage, pageWidth, speed);
+              this.translate(nextPage, pageWidth, speed, 'next');
             }
           }
 
           if (direction === 'vertical' && typeof offsetTop !== 'undefined') {
             if (prevPage && offsetTop > 0) {
-              this.translate(prevPage, pageHeight * -1, speed);
+              this.translate(prevPage, pageHeight * -1, speed, 'prev');
             }
             if (nextPage && offsetTop < 0) {
-              this.translate(nextPage, pageHeight, speed);
+              this.translate(nextPage, pageHeight, speed, 'next');
             }
           } else if (direction === 'vertical') {
             if (prevPage) {
-              this.translate(prevPage, pageHeight * -1, speed);
+              this.translate(prevPage, pageHeight * -1, speed, 'prev');
             }
             if (nextPage) {
-              this.translate(nextPage, pageHeight, speed);
+              this.translate(nextPage, pageHeight, speed, 'next');
             }
           }
         }

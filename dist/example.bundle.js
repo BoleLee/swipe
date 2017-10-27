@@ -7760,13 +7760,13 @@ var content = __webpack_require__(9);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("74fddfd3", content, false);
+var update = __webpack_require__(11)("7fe30939", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d790c52\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./example.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d790c52\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./example.vue");
+   module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d790c52\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./example.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2d790c52\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/sass-loader/lib/loader.js!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./example.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -7784,7 +7784,7 @@ exports = module.exports = __webpack_require__(10)(undefined);
 
 
 // module
-exports.push([module.i, "\n.my-swipe[data-v-2d790c52] {\n  height: 200px;\n  line-height: 200px;\n  text-align: center;\n  color: #fff;\n  font-size: 30px;\n}\n.my-swipe-item1[data-v-2d790c52] {\n  background-color: #0089dc;\n  color: #fff;\n}\n.my-swipe-item2[data-v-2d790c52] {\n  background-color: #ffd705;\n  color: #000;\n}\n.my-swipe-item3[data-v-2d790c52] {\n  background-color: #ff2d4b;\n  color: #fff;\n}\n", ""]);
+exports.push([module.i, "\n*[data-v-2d790c52] {\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box;\n}\n.my-swipe[data-v-2d790c52] {\n  height: 200px;\n  line-height: 200px;\n  text-align: center;\n  color: #fff;\n  font-size: 30px;\n}\n.my-swipe-item1[data-v-2d790c52] {\n  background-color: #0089dc;\n  color: #fff;\n}\n.my-swipe-item2[data-v-2d790c52] {\n  background-color: #ffd705;\n  color: #000;\n}\n.my-swipe-item3[data-v-2d790c52] {\n  background-color: #ff2d4b;\n  color: #fff;\n}\n.barrage-container[data-v-2d790c52] {\n  height: 6.25rem;\n  background-color: #eee;\n  position: relative;\n}\n.barrage-area[data-v-2d790c52] {\n  position: absolute;\n  top: 3.125rem;\n  left: 0;\n  right: 0;\n  padding: 0 30px;\n  height: 3rem;\n  overflow: hidden;\n}\n.barrage-area .barrage-item-wrapper[data-v-2d790c52] {\n    background-color: rgba(0, 0, 0, 0.7);\n    border-radius: 0.875rem;\n    max-width: 100%;\n    height: 1.75rem;\n    padding-right: 0.625rem;\n    display: flex;\n    align-items: center;\n}\n.barrage-area .barrage-item-wrapper img[data-v-2d790c52] {\n      width: 1.5rem;\n      height: 1.5rem;\n      border-radius: 50%;\n      margin-left: 0.125rem;\n      margin-right: 0.125rem;\n}\n.barrage-area .barrage-item-wrapper .barrage-content[data-v-2d790c52] {\n      font-size: 0.875rem;\n      color: #fff;\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis;\n}\n", ""]);
 
 // exports
 
@@ -8186,6 +8186,22 @@ module.exports = function listToStyles(parentId, list) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -8193,6 +8209,23 @@ module.exports = function listToStyles(parentId, list) {
   components: {
     swipe: __WEBPACK_IMPORTED_MODULE_0__components_swipe_index_js__["a" /* Swipe */],
     swipeItem: __WEBPACK_IMPORTED_MODULE_0__components_swipe_index_js__["b" /* SwipeItem */]
+  },
+  data() {
+    return {
+      comments: [{
+        id: 1,
+        avatar_url: './avatar.png',
+        content: '这是滚动显示的评论'
+      }, {
+        id: 2,
+        avatar_url: './avatar.png',
+        content: '评论加了淡入淡出效果'
+      }, {
+        id: 3,
+        avatar_url: './avatar.png',
+        content: '需要使swipe的高度比弹幕的高度高一些，使其垂直居中'
+      }]
+    };
   }
 });
 
@@ -8348,6 +8381,11 @@ if (false) {(function () {
       default: false
     },
 
+    fade: {
+      type: Boolean,
+      default: false
+    },
+
     noDragWhenSingle: {
       type: Boolean,
       default: true
@@ -8389,8 +8427,9 @@ if (false) {(function () {
       }, 100);
     },
 
-    translate(element, offset, speed, callback) {
+    translate(element, offset, speed, state, callback) {
       var direction = this.direction;
+      var fade = this.fade;
 
       if (speed) {
         this.animating = true;
@@ -8400,6 +8439,10 @@ if (false) {(function () {
             element.style.webkitTransform = `translate3d(${offset}px, 0, 0)`;
           } else if (direction === 'vertical') {
             element.style.webkitTransform = `translate3d(0, ${offset}px, 0)`;
+          }
+          if (fade) {
+            var animationName = state === 'current' ? 'swipeItemFadeOut' : 'swipeItemFadeIn';
+            element.style.animation = animationName + ' ' + speed + 'ms';
           }
         }, 50);
 
@@ -8547,57 +8590,57 @@ if (false) {(function () {
           this.isDone = true;
           this.before(currentPage);
           if (direction === 'horizontal') {
-            this.translate(currentPage, -pageWidth, speed, callback);
+            this.translate(currentPage, -pageWidth, speed, 'current', callback);
           } else if (direction === 'vertical') {
-            this.translate(currentPage, -pageHeight, speed, callback);
+            this.translate(currentPage, -pageHeight, speed, 'current', callback);
           }
           if (nextPage) {
-            this.translate(nextPage, 0, speed);
+            this.translate(nextPage, 0, speed, 'next');
           }
         } else if (towards === 'prev') {
           this.isDone = true;
           this.before(currentPage);
           if (direction === 'horizontal') {
-            this.translate(currentPage, pageWidth, speed, callback);
+            this.translate(currentPage, pageWidth, speed, 'current', callback);
           } else if (direction === 'vertical') {
-            this.translate(currentPage, pageHeight, speed, callback);
+            this.translate(currentPage, pageHeight, speed, 'current', callback);
           }
           if (prevPage) {
-            this.translate(prevPage, 0, speed);
+            this.translate(prevPage, 0, speed, 'prev');
           }
         } else {
           this.isDone = false;
-          this.translate(currentPage, 0, speed, callback);
+          this.translate(currentPage, 0, speed, 'current', callback);
 
           if (direction === 'horizontal' && typeof offsetLeft !== 'undefined') {
             if (prevPage && offsetLeft > 0) {
-              this.translate(prevPage, pageWidth * -1, speed);
+              this.translate(prevPage, pageWidth * -1, speed, 'prev');
             }
             if (nextPage && offsetLeft < 0) {
-              this.translate(nextPage, pageWidth, speed);
+              this.translate(nextPage, pageWidth, speed, 'next');
             }
           } else if (direction === 'horizontal') {
             if (prevPage) {
-              this.translate(prevPage, pageWidth * -1, speed);
+              this.translate(prevPage, pageWidth * -1, speed, 'prev');
             }
             if (nextPage) {
-              this.translate(nextPage, pageWidth, speed);
+              this.translate(nextPage, pageWidth, speed, 'next');
             }
           }
 
           if (direction === 'vertical' && typeof offsetTop !== 'undefined') {
             if (prevPage && offsetTop > 0) {
-              this.translate(prevPage, pageHeight * -1, speed);
+              this.translate(prevPage, pageHeight * -1, speed, 'prev');
             }
             if (nextPage && offsetTop < 0) {
-              this.translate(nextPage, pageHeight, speed);
+              this.translate(nextPage, pageHeight, speed, 'next');
             }
           } else if (direction === 'vertical') {
             if (prevPage) {
-              this.translate(prevPage, pageHeight * -1, speed);
+              this.translate(prevPage, pageHeight * -1, speed, 'prev');
             }
             if (nextPage) {
-              this.translate(nextPage, pageHeight, speed);
+              this.translate(nextPage, pageHeight, speed, 'next');
             }
           }
         }
@@ -9261,6 +9304,54 @@ var render = function() {
           _c("swipe-item", { staticClass: "my-swipe-item1" }, [
             _vm._v("Single SwipeItem")
           ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("h1", [_vm._v("滚动显示评论例子")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "barrage-container" },
+        [
+          _c(
+            "swipe",
+            {
+              staticClass: "barrage-area",
+              attrs: {
+                auto: 2500,
+                speed: 1000,
+                direction: "vertical",
+                fade: true,
+                "disabled-drag": true
+              }
+            },
+            _vm._l(_vm.comments, function(comment, index) {
+              return _c("swipe-item", { key: comment.id }, [
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      display: "flex",
+                      height: "100%",
+                      "align-items": "center"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "barrage-item-wrapper" }, [
+                      _c("img", {
+                        attrs: { src: comment.avatar_url, alt: "头像" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "barrage-content" }, [
+                        _vm._v(_vm._s(comment.content))
+                      ])
+                    ])
+                  ]
+                )
+              ])
+            })
+          )
         ],
         1
       )

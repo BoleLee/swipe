@@ -36,3 +36,19 @@
   margin: 0 3px; }
   .mint-swipe-indicator.is-active {
     background: #4274e3; }
+
+@keyframes swipeItemFadeIn {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes swipeItemFadeOut {
+  0% {
+    opacity: 1; }
+  80% {
+    opacity: 0; }
+  100% {
+    opacity: 0; } }

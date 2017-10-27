@@ -54,6 +54,22 @@
     <swipe :no-drag-when-single="false" class="my-swipe">
       <swipe-item class="my-swipe-item1">Single SwipeItem</swipe-item>
     </swipe>
+
+
+    <h1>滚动显示评论例子</h1>
+    <div class="barrage-container">
+      <swipe :auto="2500" :speed="1000" :direction="'vertical'" :fade="true" :disabled-drag="true" class="barrage-area">
+        <swipe-item v-for="(comment, index) in comments" :key="comment.id">
+          <div style="display: flex; height: 100%; align-items: center;">
+            <div class="barrage-item-wrapper">
+              <img :src="comment.avatar_url" alt="头像">
+              <div class="barrage-content">{{ comment.content }}</div>
+            </div>
+          </div>
+        </swipe-item>
+      </swipe>
+    </div>
+    
   </div>
 </template>
 
@@ -64,11 +80,36 @@
     components: {
       swipe: Swipe,
       swipeItem: SwipeItem
+    },
+    data() {
+      return {
+        comments: [{
+          id: 1,
+          avatar_url: './avatar.png',
+          content: '这是滚动显示的评论'
+        }, {
+          id: 2,
+          avatar_url: './avatar.png',
+          content: '评论加了淡入淡出效果'
+        }, {
+          id: 3,
+          avatar_url: './avatar.png',
+          content: '需要使swipe的高度比弹幕的高度高一些，使其垂直居中'
+        }]
+      }
     }
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import 'mixins.scss';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .my-swipe {
   height: 200px;
   line-height: 200px;
@@ -87,5 +128,45 @@
 .my-swipe-item3 {
   background-color: #ff2d4b;
   color: #fff;
+}
+
+.barrage-container {
+  height: px2rem(200px);
+  background-color: #eee;
+  position: relative;
+}
+.barrage-area {
+  position: absolute;
+  top: px2rem(100px);
+  left: 0;
+  right: 0;
+  padding: 0 30px;
+  height: px2rem(96px);
+  overflow: hidden;
+    
+  .barrage-item-wrapper {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: px2rem(28px);
+    max-width: 100%;
+    height: px2rem(56px);
+    padding-right: px2rem(20px);
+    display: flex;
+    align-items: center;
+
+    img {
+      width: px2rem(48px);
+      height: px2rem(48px);
+      border-radius: 50%;
+      margin-left: px2rem(4px);
+      margin-right: px2rem(4px);
+    }
+    .barrage-content {
+      font-size: px2rem(28px);
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }
 </style>
